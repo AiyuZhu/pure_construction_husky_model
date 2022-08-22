@@ -1,0 +1,13 @@
+<launch>
+	<!-- Set model path -->
+  	<param name="robot_description" command="$(find xacro)/xacro '$(find c_husky_description)/urdf/c_husky.urdf' " />
+	
+	<!-- Run joint_state_publisher node，publish robot states  -->
+	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" /> 
+	
+	<!-- Run robot_state_publisher node，piblish tf  -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> 
+	
+	<!-- Run rviz display -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find c_husky_description)/config/c_husky_urdf.rviz" required="true" />
+</launch>
